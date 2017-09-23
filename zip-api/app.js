@@ -29,6 +29,9 @@ app.get('/zip/:zipcode', (req, res) => {
 
 // Use a route parameter to hold the cityname value
 app.get('/city/:cityname', (req, res) => {
+  // NOTE: the byCity map only has citynames in all CAPS.
+  //  so zipdb.byCity['SPRINGFIELD'] does exists
+  //  and zipdb.byCity['springfield'] does NOT exist
   const records = zipdb.byCity[req.params.cityname];
   if(records===undefined){
     res.sendStatus(404);
